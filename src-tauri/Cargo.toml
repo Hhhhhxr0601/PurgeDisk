@@ -1,0 +1,31 @@
+[package]
+name = "purgedisk-gui"
+version = "0.1.0"
+edition = "2021"
+description = "PurgeDisk GUI - 企业级 U 盘数据合规销毁工具"
+license = "MIT"
+
+[dependencies]
+# Tauri 框架
+tauri = { version = "2", features = ["devtools"] }
+tauri-plugin-shell = "2"
+
+# 序列化
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# 路径
+dirs = "5"
+
+# 引用主库
+purgedisk = { path = ".." }
+
+# 异步运行时
+tokio = { version = "1", features = ["full"] }
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]

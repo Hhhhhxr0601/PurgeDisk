@@ -77,7 +77,7 @@ fn main() {
             buffer_size,
         } => cmd_wipe(&cli, device, verify, buffer_size),
         Commands::Logs { days, ref serial } => cmd_logs(&cli, days, serial.as_deref()),
-        Commands::Tui => cmd_tui(),
+        Commands::Tui => cmd_tui(&cli),
     };
 
     match result {
@@ -399,12 +399,9 @@ fn cmd_logs(cli: &Cli, days: u32, serial_filter: Option<&str>) -> Result<()> {
 }
 
 /// 启动 TUI
-fn cmd_tui() -> Result<()> {
-    println!("TUI 模式开发中...");
-    println!("请使用命令行模式:");
-    println!("  purgedisk list          - 列出设备");
-    println!("  purgedisk wipe --device - 擦写设备");
-    println!("  purgedisk logs          - 查看日志");
+fn cmd_tui(cli: &Cli) -> Result<()> {
+    let log_dir = expand_path(&cli.log_dir);
+    purgedisk::tui::run(log_dir)?;
     Ok(())
 }
 

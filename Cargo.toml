@@ -1,3 +1,7 @@
+[workspace]
+members = ["src-tauri"]
+resolver = "2"
+
 [package]
 name = "purgedisk"
 version = "0.1.0"
@@ -5,6 +9,10 @@ edition = "2021"
 description = "企业级 U 盘数据合规销毁工具 - DoD 5220.22-M 标准"
 license = "MIT"
 rust-version = "1.70"
+
+[lib]
+name = "purgedisk"
+path = "src/lib.rs"
 
 [[bin]]
 name = "purgedisk"

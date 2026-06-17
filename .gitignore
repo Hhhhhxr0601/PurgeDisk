@@ -1,2 +1,17 @@
+# Rust 编译缓存
 /target/
+
+# macOS 系统文件
 *.DS_Store
+
+# Node.js 依赖
+node_modules/
+
+# 前端构建产物
+src-gui/dist/
+
+# Claude 工作目录
+.claude/
+
+# Tauri 自动生成
+src-tauri/gen/

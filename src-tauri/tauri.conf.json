@@ -1,0 +1,52 @@
+{
+  "productName": "PurgeDisk",
+  "version": "0.1.0",
+  "identifier": "com.purgedisk.tool",
+  "build": {
+    "frontendDist": "../src-gui/dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "npm run dev --prefix src-gui",
+    "beforeBuildCommand": "npm run build --prefix src-gui"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "PurgeDisk — 企业级数据合规销毁工具",
+        "width": 960,
+        "height": 680,
+        "minWidth": 800,
+        "minHeight": 600,
+        "center": true,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png"
+    ],
+    "category": "Utility",
+    "shortDescription": "企业级 U 盘数据合规销毁工具",
+    "longDescription": "PurgeDisk 符合 DoD 5220.22-M 标准，提供三轮覆写（0x00 → 0xFF → 随机数据）安全擦写可移动存储设备。",
+    "macOS": {
+      "minimumSystemVersion": "10.15"
+    },
+    "windows": {
+      "nsis": {
+        "installMode": "both"
+      }
+    },
+    "linux": {
+      "deb": {
+        "depends": ["libwebkit2gtk-4.1-dev"]
+      }
+    }
+  }
+}

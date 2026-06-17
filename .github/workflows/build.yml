@@ -2,10 +2,8 @@ name: Build & Release
 
 on:
   push:
-    branches: [main]
-    tags: ['v*']
-  pull_request:
-    branches: [main]
+    tags:
+      - "v*"
 
 permissions:
   contents: write
@@ -58,11 +56,7 @@ jobs:
         if: matrix.os == 'ubuntu-22.04'
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            libwebkit2gtk-4.1-dev \
-            libappindicator3-dev \
-            librsvg2-dev \
-            patchelf
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
       - name: Build Tauri app
         uses: tauri-apps/tauri-action@v0
@@ -70,19 +64,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: PurgeDisk ${{ github.ref_name }}
-          releaseBody: |
-            ## PurgeDisk ${{ github.ref_name }}
-
-            企业级 U 盘数据合规销毁工具 — DoD 5220.22-M 标准
-
-            ### 下载说明
-            | 平台 | 文件 |
-            |------|------|
-            | macOS (Apple Silicon) | `PurgeDisk_*_aarch64.dmg` |
-            | macOS (Intel) | `PurgeDisk_*_x64.dmg` |
-            | Windows | `PurgeDisk_*_x64-setup.exe` |
-            | Linux / 麒麟 | `PurgeDisk_*_amd64.deb` |
+          releaseName: "PurgeDisk ${{ github.ref_name }}"
+          releaseBody: "企业级 U 盘数据合规销毁工具 - DoD 5220.22-M 标准"
           releaseDraft: true
           prerelease: false
           args: --target ${{ matrix.target }}
